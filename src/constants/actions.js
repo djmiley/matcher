@@ -1,0 +1,1 @@
+export const SET_STATE = 'matcher/SET_STATE';
