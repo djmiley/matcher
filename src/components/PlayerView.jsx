@@ -14,8 +14,7 @@ export default class PlayerView extends React.Component {
             <label className='matcher-player-view-rating' ref='rating'>
                 {this.props.rating}
             </label>
-            <button className='matcher-player-view-edit-button' onClick={() => this.props.editPlayer(this.props.id)}>Edit</button>
-            <button className='matcher-player-view-delete-button' onClick={() => this.props.deletePlayer(this.props.id)}>Delete</button>
+            <button className='matcher-player-view-match-button' onClick={() => this.props.matchPlayer(this.props.id)}>Match</button>
         </li>
     }
 };

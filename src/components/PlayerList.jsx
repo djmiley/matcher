@@ -8,12 +8,6 @@ export default class PlayerList extends React.Component {
         // Analyse state correctly
         this.shouldComponentUpdate = true;
     }
-    deletePlayer(id) {
-        console.log('deleting ' + id);
-    }
-    editPlayer(id) {
-        console.log('editing ' + id);
-    }
     render() {
         return <div>
             <ul className="matcher-player-list">
@@ -23,8 +17,6 @@ export default class PlayerList extends React.Component {
                         id={player.get('id')}
                         name={player.get('name')}
                         rating={player.get('rating')}
-                        editPlayer={this.editPlayer}
-                        deletePlayer={this.deletePlayer}
                         {...this.props} />
                 )}
             </ul>

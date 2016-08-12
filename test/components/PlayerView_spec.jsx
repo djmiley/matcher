@@ -48,56 +48,33 @@ describe('PlayerView', () => {
             expect(playerViewRatingLabel[0].textContent).to.equal(rating + '');
         });
 
-        it('renders an button labelled Edit', () => {
+        it('renders an button labelled Match', () => {
             const component = renderIntoDocument(
                 <PlayerView />
             );
 
-            const playerViewEditButton = scryRenderedDOMComponentsWithClass(component, 'matcher-player-view-edit-button');
+            const playerViewButton = scryRenderedDOMComponentsWithTag(component, 'button');
 
-            expect(playerViewEditButton[0].textContent).to.equal('Edit');
-        });
-
-        it('renders a button labelled Delete', () => {
-            const component = renderIntoDocument(
-                <PlayerView />
-            );
-
-            const playerViewDeleteButton = scryRenderedDOMComponentsWithClass(component, 'matcher-player-view-delete-button');
-
-            expect(playerViewDeleteButton[0].textContent).to.equal('Delete');
+            expect(playerViewButton.length).to.equal(1);
+            expect(playerViewButton[0].textContent).to.equal('Match');
         });
 
     });
 
     describe('Function Callback', () => {
 
-        it('invokes callback when edit button is clicked', () => {
-            var edited = false;
-            const editPlayer = () => edited = true;
+        it('invokes callback when match button is clicked', () => {
+            var matched = false;
+            const matchPlayer = () => matched = true;
             const component = renderIntoDocument(
-                <PlayerView editPlayer={editPlayer} />
+                <PlayerView matchPlayer={matchPlayer} />
             );
 
-            const playerViewEditButton = scryRenderedDOMComponentsWithClass(component, 'matcher-player-view-edit-button');
+            const playerViewButton = scryRenderedDOMComponentsWithTag(component, 'button');
 
-            Simulate.click(playerViewEditButton[0]);
+            Simulate.click(playerViewButton[0]);
 
-            expect(edited).to.be.true;
-        });
-
-        it('invokes callback when delete button is clicked', () => {
-            var deleted = false;
-            const deletePlayer = () => deleted = true;
-            const component = renderIntoDocument(
-                <PlayerView deletePlayer={deletePlayer} />
-            );
-
-            const playerViewDeleteButton = scryRenderedDOMComponentsWithClass(component, 'matcher-player-view-delete-button');
-
-            Simulate.click(playerViewDeleteButton[0]);
-
-            expect(deleted).to.be.true;
+            expect(matched).to.be.true;
         });
 
     });

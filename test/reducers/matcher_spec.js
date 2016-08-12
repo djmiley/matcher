@@ -1,9 +1,9 @@
 import {expect} from 'chai';
 import {List, Map, fromJS} from 'immutable';
 
-import Player from '../../src/algorithm/Player';
-
 import * as actions from '../../src/constants/actions';
+
+import Player from '../../src/logic/Player';
 
 import reducer from '../../src/reducers/matcher';
 
@@ -91,6 +91,30 @@ describe('reducer', () => {
                     new Player(2, 'James', 20),
                     new Player(3, 'Miley', 30)]
             }));
+        });
+
+    });
+
+    describe('MATCH_PLAYER', () => {
+
+        it('is not implemented', () => {
+            expect(true).to.be.false;
+        });
+
+    });
+
+    describe('GENERATE_PLAYER', () => {
+
+        it('is not implemented', () => {
+            expect(true).to.be.false;
+        });
+
+    });
+
+    describe('MATCH', () => {
+
+        it('is not implemented', () => {
+            expect(true).to.be.false;
         });
 
     });

@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {compose, createStore} from 'redux';
 
-import Player from './algorithm/Player';
-
 import * as actions from './constants/actions';
 
 import {AppContainer} from './containers/App';
+
+import Player from './logic/Player';
 
 import reducer from './reducers/matcher';
 
