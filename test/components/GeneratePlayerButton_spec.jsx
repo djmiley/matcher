@@ -11,8 +11,37 @@ import GeneratePlayerButton from '../../src/components/GeneratePlayerButton';
 
 describe('GeneratePlayerButton', () => {
 
-    it('is not implemented', () => {
-        expect(false).to.be.true;
+    describe('Rendering', () => {
+
+        it('renders an button labelled Generate Player', () => {
+            const component = renderIntoDocument(
+                <GeneratePlayerButton />
+            );
+
+            const generatePlayerButton = scryRenderedDOMComponentsWithTag(component, 'button');
+
+            expect(generatePlayerButton.length).to.equal(1);
+            expect(generatePlayerButton[0].textContent).to.equal('Generate Player');
+        });
+
+    });
+
+    describe('Function Callback', () => {
+
+        it('invokes callback when generate player button is clicked', () => {
+            var playerGenerated = false;
+            const generatePlayer = () => playerGenerated = true;
+            const component = renderIntoDocument(
+                <GeneratePlayerButton generatePlayer={generatePlayer} />
+            );
+
+            const generatePlayerButton = scryRenderedDOMComponentsWithTag(component, 'button');
+
+            Simulate.click(generatePlayerButton[0]);
+
+            expect(playerGenerated).to.be.true;
+        });
+
     });
 
 });
