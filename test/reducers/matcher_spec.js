@@ -97,8 +97,38 @@ describe('reducer', () => {
 
     describe('MATCH_PLAYER', () => {
 
-        it('is not implemented', () => {
-            expect(true).to.be.false;
+        it('should match that player', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30)]
+            });
+
+            const action = {
+                type: actions.MATCH_PLAYER,
+                playerID: 1
+            };
+
+            const nextState = reducer(initialState, action);
+
+            expect(nextState.get('players')).to.not.contain(fromJS(new Player(1, 'Drew', 10)));
+        });
+
+        it('should match that player with one other', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30)]
+            });
+
+            const action = {
+                type: actions.MATCH_PLAYER,
+                playerID: 1
+            };
+
+            const nextState = reducer(initialState, action);
+
+            expect(nextState.get('players').size).to.equal(initialState.get('players').size - 2);
         });
 
     });
@@ -147,14 +177,48 @@ describe('reducer', () => {
                     new Player(7, 'Miley', 30),
                     new Player(8, 'New', 3)]
             }));
+
         });
 
     });
 
     describe('MATCH', () => {
 
-        it('is not implemented', () => {
-            expect(true).to.be.false;
+        it('should match the players up in pairs - even', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30),
+                    new Player(4, 'Ran', 40)]
+            });
+
+            const action = {
+                type: actions.MATCH
+            };
+
+            const nextState = reducer(initialState, action);
+
+            const expectedSize = initialState.get('players').size % 2 === 0 ? 0 : 1;
+            expect(nextState.get('players').size).to.equal(expectedSize);
+        });
+
+        it('should match the players up in pairs - odd', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30),
+                    new Player(4, 'Ran', 40),
+                    new Player(5, 'Hello', 50)]
+            });
+
+            const action = {
+                type: actions.MATCH
+            };
+
+            const nextState = reducer(initialState, action);
+
+            const expectedSize = initialState.get('players').size % 2 === 0 ? 0 : 1;
+            expect(nextState.get('players').size).to.equal(expectedSize);
         });
 
     });
