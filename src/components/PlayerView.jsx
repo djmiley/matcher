@@ -3,7 +3,9 @@ import React from 'react';
 export default class PlayerView extends React.Component {
     constructor(props) {
         super(props);
-        this.shouldComponentUpdate = false;
+        this.shouldComponentUpdate = function(nextProps, nextState) {
+            return this.props.players !== nextProps.players;
+        };
     }
     render() {
         return <li className='matcher-player-view'>
@@ -13,7 +15,7 @@ export default class PlayerView extends React.Component {
             <label className='matcher-player-view-rating' ref='rating'>
                 {this.props.rating}
             </label>
-            <button className='matcher-player-view-match-button' onClick={() => this.props.matchPlayer(this.props.id)}>Match</button>
+            <button className='matcher-player-view-match-button' onClick={() => this.props.matchPlayer(this.props.id, this.props.players)}>Match</button>
         </li>
     }
 };
