@@ -103,10 +103,50 @@ describe('reducer', () => {
 
     });
 
-    describe('GENERATE_PLAYER', () => {
+    describe('ADD_PLAYER', () => {
 
-        it('is not implemented', () => {
-            expect(true).to.be.false;
+        it('adds a player to the list of players', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30)]
+            });
+
+            const action = {
+                type: actions.ADD_PLAYER,
+                player: new Player(undefined, 'New', 3)
+            };
+
+            const nextState = reducer(initialState, action);
+
+            expect(nextState).to.equal(fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30),
+                    new Player(4, 'New', 3)]
+            }));
+        });
+
+        it('generates an id one higher than the highest current id for the added player', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(7, 'Miley', 30)]
+            });
+
+            const action = {
+                type: actions.ADD_PLAYER,
+                player: new Player(undefined, 'New', 3)
+            };
+
+            const nextState = reducer(initialState, action);
+
+            expect(nextState).to.equal(fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(7, 'Miley', 30),
+                    new Player(8, 'New', 3)]
+            }));
         });
 
     });

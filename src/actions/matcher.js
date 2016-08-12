@@ -7,9 +7,10 @@ export function matchPlayer(playerID) {
     }
 }
 
-export function generatePlayer() {
+export function addPlayer(player) {
     return {
-        type: actions.GENERATE_PLAYER
+        type: actions.ADD_PLAYER,
+        player
     }
 }
 

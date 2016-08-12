@@ -11,9 +11,13 @@ function matchPlayer(state, playerID) {
     return state;
 }
 
-function generatePlayer(state) {
-    console.log('player generated');
-    return state;
+function addPlayer(state, player) {
+    const nextId = state.get('players').map(
+        (item) => item.get('id')
+    ).max() + 1;
+    let newPlayer = player;
+    newPlayer.id = nextId;
+    return state.update('players', players => players.push(Map(newPlayer)));
 }
 
 function match(state) {
@@ -27,8 +31,8 @@ export default function(state = Map(), action) {
             return setState(state, action.state);
         case actions.MATCH_PLAYER:
             return matchPlayer(state, action.playerID);
-        case actions.GENERATE_PLAYER:
-            return generatePlayer(state);
+        case actions.ADD_PLAYER:
+            return addPlayer(state, action.player);
         case actions.MATCH:
             return match(state);
         default:

@@ -30,9 +30,9 @@ describe('GeneratePlayerButton', () => {
 
         it('invokes callback when generate player button is clicked', () => {
             var playerGenerated = false;
-            const generatePlayer = () => playerGenerated = true;
+            const addPlayer = () => playerGenerated = true;
             const component = renderIntoDocument(
-                <GeneratePlayerButton generatePlayer={generatePlayer} />
+                <GeneratePlayerButton addPlayer={addPlayer} />
             );
 
             const generatePlayerButton = scryRenderedDOMComponentsWithTag(component, 'button');
