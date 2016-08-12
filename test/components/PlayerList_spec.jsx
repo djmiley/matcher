@@ -1,12 +1,34 @@
 import {expect} from 'chai';
-import {List, Map, fromJS} from 'immutable';
+import {List} from 'immutable';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+
+const {renderIntoDocument,
+    scryRenderedDOMComponentsWithTag,
+    Simulate} = TestUtils;
+
+import Player from '../../src/algorithm/Player';
 
 import PlayerList from '../../src/components/PlayerList';
 
 describe('PlayerList', () => {
 
-    it('is not tested', () => {
-        expect(false).to.be.true;
+    describe('Rendering', () => {
+
+        it('renders a list of the players', () => {
+            const players = List.of(
+                new Player(1, 'Drew', 10, true),
+                new Player(2, 'James', 20, true),
+                new Player(3, 'Miley', 30, true)
+            );
+            const component = renderIntoDocument(
+                <PlayerList players={players} />
+            );
+            const playerList = scryRenderedDOMComponentsWithTag(component, 'li');
+
+            expect(playerList.length).to.equal(players.size);
+        });
+
     });
 
 });
