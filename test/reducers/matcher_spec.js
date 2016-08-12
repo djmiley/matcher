@@ -1,5 +1,5 @@
-import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
+import {List, Map, fromJS} from 'immutable';
 
 import * as actions from '../../src/constants/actions';
 import reducer from '../../src/reducers/matcher';
