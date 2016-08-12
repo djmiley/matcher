@@ -5,8 +5,9 @@ import PlayerView from './PlayerView';
 export default class PlayerList extends React.Component {
     constructor(props) {
         super(props);
-        // Analyse state correctly
-        this.shouldComponentUpdate = true;
+        this.shouldComponentUpdate = function(nextProps, nextState) {
+            return this.props.players !== nextProps.players;
+        };
     }
     render() {
         return <div>

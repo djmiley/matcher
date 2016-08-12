@@ -3,8 +3,7 @@ import React from 'react';
 export default class PlayerView extends React.Component {
     constructor(props) {
         super(props);
-        // Analyse state correctly
-        this.shouldComponentUpdate = true;
+        this.shouldComponentUpdate = false;
     }
     render() {
         return <li className='matcher-player-view'>
