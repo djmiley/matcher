@@ -5,6 +5,7 @@ import * as actionCreators from '../actions/matcher';
 
 import GeneratePlayerButton from '../components/GeneratePlayerButton';
 import MatchButton from '../components/MatchButton';
+import MatchList from '../components/MatchList';
 import PlayerList from '../components/PlayerList';
 
 export default class App extends React.Component {
@@ -14,6 +15,7 @@ export default class App extends React.Component {
                 <PlayerList {...this.props} />
                 <GeneratePlayerButton {...this.props} />
                 <MatchButton {...this.props} />
+                <MatchList {...this.props} />
             </section>
         </div>
     }
@@ -21,6 +23,7 @@ export default class App extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        matches: state.get('matches'),
         players: state.get('players')
     };
 }

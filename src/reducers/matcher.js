@@ -21,8 +21,8 @@ function addPlayer(state, player) {
     return state.update('players', players => players.push(Map(newPlayer)));
 }
 
-function match(state, matches) {
-    const matchedIDs = [].concat.apply([], matches.toJS());
+function match(state, matchedPlayers) {
+    const matchedIDs = [].concat.apply([], matchedPlayers.toJS());
     return state.update('players', players => players.filter(player => !matchedIDs.includes(player.get('id'))));
 }
 
@@ -35,7 +35,7 @@ export default function(state = Map(), action) {
         case actions.ADD_PLAYER:
             return addPlayer(state, action.player);
         case actions.MATCH:
-            return match(state, action.matches);
+            return match(state, action.matchedPlayers);
         default:
             return state;
     }

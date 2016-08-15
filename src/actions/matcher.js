@@ -21,9 +21,9 @@ export function addPlayer() {
 }
 
 export function match(players) {
-    const matches = Matcher(players);
+    const matchedPlayers = Matcher(players);
     return {
         type: actions.MATCH,
-        matches
+        matchedPlayers
     }
 }

@@ -213,14 +213,14 @@ describe('reducer', () => {
                     new Player(4, 'Ran', 40)]
             });
 
-            const matches = List.of(
-                [1, 2],
-                [3, 4]
+            const matchedPlayers = List.of(
+                List.of(1, 2),
+                List.of(3, 4)
             );
 
             const action = {
                 type: actions.MATCH,
-                matches
+                matchedPlayers
             };
 
             const nextState = reducer(initialState, action);
@@ -237,14 +237,14 @@ describe('reducer', () => {
                     new Player(5, 'Hello', 50)]
             });
 
-            const matches = List.of(
-                [1, 2],
-                [3, 4]
+            const matchedPlayers = List.of(
+                List.of(1, 2),
+                List.of(3, 4)
             );
 
             const action = {
                 type: actions.MATCH,
-                matches
+                matchedPlayers
             };
 
             const nextState = reducer(initialState, action);
