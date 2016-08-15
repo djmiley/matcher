@@ -6,21 +6,24 @@ function setState(state, newState) {
     return state.mergeDeep(newState);
 }
 
-function matchPlayer(state, match) {
-    return state;
+function matchPlayer(state, playerID, matchedPlayerID) {
+    const matchedIDs = [playerID, matchedPlayerID];
+    return state.update('players', players => players.filter(player => !matchedIDs.includes(player.get('id'))));
 }
 
 function addPlayer(state, player) {
-    const nextId = state.get('players').map(
-        (item) => item.get('id')
-    ).max() + 1;
+    let nextId = 1;
+    if (state.get('players').size > 0) {
+        nextId += state.get('players').map((item) => item.get('id')).max();
+    }
     let newPlayer = player;
     newPlayer.id = nextId;
     return state.update('players', players => players.push(Map(newPlayer)));
 }
 
 function match(state, matches) {
-    return state;
+    const matchedIDs = [].concat.apply([], matches.toJS());
+    return state.update('players', players => players.filter(player => !matchedIDs.includes(player.get('id'))));
 }
 
 export default function(state = Map(), action) {
@@ -28,7 +31,7 @@ export default function(state = Map(), action) {
         case actions.SET_STATE:
             return setState(state, action.state);
         case actions.MATCH_PLAYER:
-            return matchPlayer(state, action.match);
+            return matchPlayer(state, action.playerID, action.matchedPlayerID);
         case actions.ADD_PLAYER:
             return addPlayer(state, action.player);
         case actions.MATCH:

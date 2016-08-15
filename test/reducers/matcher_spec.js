@@ -106,12 +106,14 @@ describe('reducer', () => {
 
             const action = {
                 type: actions.MATCH_PLAYER,
-                playerID: 1
+                playerID: 1,
+                matchedPlayerID: 3
             };
 
             const nextState = reducer(initialState, action);
 
             expect(nextState.get('players')).to.not.contain(fromJS(new Player(1, 'Drew', 10)));
+            expect(nextState.get('players')).to.not.contain(fromJS(new Player(3, 'Miley', 30)));
         });
 
         it('should match that player with one other', () => {
@@ -123,7 +125,8 @@ describe('reducer', () => {
 
             const action = {
                 type: actions.MATCH_PLAYER,
-                playerID: 1
+                playerID: 1,
+                matchedPlayerID: 3
             };
 
             const nextState = reducer(initialState, action);
@@ -180,6 +183,24 @@ describe('reducer', () => {
 
         });
 
+        it('generates an id of one when it is the first player', () => {
+            const initialState = fromJS({
+                players: []
+            });
+
+            const action = {
+                type: actions.ADD_PLAYER,
+                player: new Player(undefined, 'Drew', 10)
+            };
+
+            const nextState = reducer(initialState, action);
+
+            expect(nextState).to.equal(fromJS({
+                players: [new Player(1, 'Drew', 10)]
+            }));
+
+        });
+
     });
 
     describe('MATCH', () => {
@@ -192,14 +213,19 @@ describe('reducer', () => {
                     new Player(4, 'Ran', 40)]
             });
 
+            const matches = List.of(
+                [1, 2],
+                [3, 4]
+            );
+
             const action = {
-                type: actions.MATCH
+                type: actions.MATCH,
+                matches
             };
 
             const nextState = reducer(initialState, action);
 
-            const expectedSize = initialState.get('players').size % 2 === 0 ? 0 : 1;
-            expect(nextState.get('players').size).to.equal(expectedSize);
+            expect(nextState.get('players').size).to.equal(0);
         });
 
         it('should match the players up in pairs - odd', () => {
@@ -211,14 +237,20 @@ describe('reducer', () => {
                     new Player(5, 'Hello', 50)]
             });
 
+            const matches = List.of(
+                [1, 2],
+                [3, 4]
+            );
+
             const action = {
-                type: actions.MATCH
+                type: actions.MATCH,
+                matches
             };
 
             const nextState = reducer(initialState, action);
 
-            const expectedSize = initialState.get('players').size % 2 === 0 ? 0 : 1;
-            expect(nextState.get('players').size).to.equal(expectedSize);
+            expect(nextState.get('players').size).to.equal(1);
+            expect(nextState.get('players').get(0)).to.equal(fromJS(new Player(5, 'Hello', 50)));
         });
 
     });
