@@ -10,6 +10,7 @@ export default class PlayerView extends React.Component {
             <label className='matcher-player-view-name' ref='name'>
                 {this.props.name}
             </label>
+            <label> </label>
             <label className='matcher-player-view-rating' ref='rating'>
                 {this.props.rating}
             </label>

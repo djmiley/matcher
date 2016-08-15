@@ -14,7 +14,6 @@ export default class MatchList extends React.Component {
             <ul className="matcher-match-list">
                 {this.props.matches.map(match =>
                     <MatchView key={match.get('id')}
-                        // How to bind match properties simpler?
                         id={match.get('id')}
                         matchPlayers={match.get('players')}
                         {...this.props} />
