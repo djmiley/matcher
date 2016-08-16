@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import * as config from '../config';
+
 import * as actionCreators from '../actions/matcher';
 
 import GeneratePlayerButton from '../components/buttons/GeneratePlayerButton';
@@ -20,6 +22,8 @@ export default class App extends React.Component {
         </div>
     }
 };
+
+actionCreators.matcher(config.matcher);
 
 function mapStateToProps(state) {
     return {

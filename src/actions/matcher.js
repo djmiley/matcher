@@ -1,15 +1,15 @@
 import * as actions from '../constants/actions';
 
-import {Matcher, PlayerMatcher} from '../logic/Algorithm';
+import DummyMatcher from '../logic/DummyMatcher';
 import RandomPlayer from '../logic/RandomPlayer';
 
-export function matchPlayer(playerID, players) {
-    const matchedPlayerID = PlayerMatcher(playerID, players);
-    return {
-        type: actions.MATCH_PLAYER,
-        playerID,
-        matchedPlayerID
+let matcher = DummyMatcher;
+
+export function matcher(setMatcher) {
+    if (!setMatcher) {
+        return matcher;
     }
+    matcher = setMatcher;
 }
 
 export function addPlayer() {
@@ -20,8 +20,8 @@ export function addPlayer() {
     }
 }
 
-export function match(players) {
-    const matchedPlayers = Matcher(players);
+export function match(players, playerID) {
+    const matchedPlayers = matcher(players, playerID);
     return {
         type: actions.MATCH,
         matchedPlayers

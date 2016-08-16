@@ -65,9 +65,9 @@ describe('PlayerView', () => {
 
         it('invokes callback when match button is clicked', () => {
             var matched = false;
-            const matchPlayer = () => matched = true;
+            const match = () => matched = true;
             const component = renderIntoDocument(
-                <PlayerView matchPlayer={matchPlayer} />
+                <PlayerView match={match} />
             );
 
             const playerViewButton = scryRenderedDOMComponentsWithTag(component, 'button');

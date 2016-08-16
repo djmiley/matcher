@@ -96,76 +96,6 @@ describe('reducer', () => {
 
     });
 
-    describe('MATCH_PLAYER', () => {
-
-        it('should match that player', () => {
-            const initialState = fromJS({
-                players: [new Player(1, 'Drew', 10),
-                    new Player(2, 'James', 20),
-                    new Player(3, 'Miley', 30)],
-                matches: []
-            });
-
-            const action = {
-                type: actions.MATCH_PLAYER,
-                playerID: 1,
-                matchedPlayerID: 3
-            };
-
-            const nextState = reducer(initialState, action);
-
-            expect(nextState.get('players').size).to.equal(initialState.get('players').size - 2);
-            expect(nextState.get('players')).to.not.contain(fromJS(new Player(1, 'Drew', 10)));
-
-            expect(nextState.get('matches').size).to.equal(1);
-            expect(nextState.get('matches').get(0).get('players')).to.contain(fromJS(new Player(1, 'Drew', 10)));
-        });
-
-        it('should match that player with one other', () => {
-            const initialState = fromJS({
-                players: [new Player(1, 'Drew', 10),
-                    new Player(2, 'James', 20),
-                    new Player(3, 'Miley', 30)],
-                matches: []
-            });
-
-            const action = {
-                type: actions.MATCH_PLAYER,
-                playerID: 1,
-                matchedPlayerID: 3
-            };
-
-            const nextState = reducer(initialState, action);
-
-            expect(nextState.get('players').size).to.equal(initialState.get('players').size - 2);
-            expect(nextState.get('players')).to.not.contain(fromJS(new Player(3, 'Miley', 30)));
-
-            expect(nextState.get('matches').size).to.equal(1);
-            expect(nextState.get('matches').get(0).get('players')).to.contain(fromJS(new Player(3, 'Miley', 30)));
-        });
-
-        it('generates an id one higher than the highest current id for the new match', () => {
-            const initialState = fromJS({
-                players: [new Player(1, 'Drew', 10),
-                    new Player(2, 'James', 20),
-                    new Player(3, 'Miley', 30)],
-                matches: [new Match(3, new Player(4, 'One', 20), new Player(5, 'Two', 20))]
-            });
-
-            const action = {
-                type: actions.MATCH_PLAYER,
-                playerID: 1,
-                matchedPlayerID: 3
-            };
-
-            const nextState = reducer(initialState, action);
-
-            expect(nextState.get('matches').size).to.equal(2);
-            expect(nextState.get('matches').get(1).get('id')).to.equal(4);
-        });
-
-    });
-
     describe('ADD_PLAYER', () => {
 
         it('adds a player to the list of players', () => {
@@ -324,6 +254,26 @@ describe('reducer', () => {
             expect(nextState.get('matches').size).to.equal(3);
             expect(nextState.get('matches').get(1).get('id')).to.equal(4);
             expect(nextState.get('matches').get(2).get('id')).to.equal(5);
+        });
+
+        it('should be able to handle a null parameter', () => {
+            const initialState = fromJS({
+                players: [new Player(1, 'Drew', 10),
+                    new Player(2, 'James', 20),
+                    new Player(3, 'Miley', 30),
+                    new Player(4, 'Ran', 40),
+                    new Player(5, 'Hello', 50)],
+                matches: [new Match(3, new Player(7, 'One', 20), new Player(8, 'Two', 20))]
+            });
+
+            const action = {
+                type: actions.MATCH,
+                matchedPlayers: null
+            };
+
+            const nextState = reducer(initialState, action);
+
+            expect(nextState.get('matches').size).to.equal(1);
         });
 
     });

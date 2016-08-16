@@ -18,20 +18,6 @@ function setState(state, newState) {
     return state.mergeDeep(newState);
 }
 
-function matchPlayer(state, playerID, matchedPlayerID) {
-    const player = state.get('players').find(
-        player => player.get('id') === playerID
-    );
-    const matchedPlayer = state.get('players').find(
-        player => player.get('id') === matchedPlayerID
-    );
-    const nextId = getNextID(state, 'matches');
-    const newMatch = new Match(nextId, player, matchedPlayer, true);
-
-    return state.update('players', players => players.filter(player => !List.of(playerID, matchedPlayerID).includes(player.get('id'))))
-        .update('matches', matches => matches.push(newMatch));
-}
-
 function addPlayer(state, player) {
     const nextId = getNextID(state, 'players');
     let newPlayer = player;
@@ -40,6 +26,10 @@ function addPlayer(state, player) {
 }
 
 function match(state, matchedPlayers) {
+    if (!matchedPlayers) {
+        return state;
+    }
+
     let nextId;
 
     const newMatches = matchedPlayers.map(match => {

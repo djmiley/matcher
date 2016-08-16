@@ -1,7 +1,7 @@
 import {assert, expect} from 'chai';
 import {List, Map} from 'immutable';
 
-import {Matcher, PlayerMatcher} from '../../src/logic/Algorithm';
+import DummyMatcher from '../../src/logic/DummyMatcher';
 import Player from '../../src/object/Player';
 
 let players;
@@ -15,12 +15,12 @@ before(() => {
     );   
 });
 
-describe('Matcher', () => {
+describe('DummyMatcher', () => {
 
     let matches;
 
     before(() => {
-        matches = Matcher(players);
+        matches = DummyMatcher(players);
     });
 
     it('should return an immutable list of pairwise array', () => {
@@ -38,20 +38,35 @@ describe('Matcher', () => {
             new Player(3, 'Miley', 30, true)
         );
 
-        const matches2 = Matcher(players2);
+        const matches2 = DummyMatcher(players2);
 
         expect(matches2.size).to.equal(1);
     });
 
 });
 
-describe('PlayerMatcher', () => {
+describe('PlayerDummyMatcher', () => {
 
-    it('should return a single integer not equal to the inputted playerID', () => {
-        const matchedPlayerID = PlayerMatcher(2, players);
+    it('should return a single pair containing the initial player id', () => {
+        const playerMatch = DummyMatcher(players, 2).get(0);
 
-        expect(matchedPlayerID).to.not.equal(2);
-        expect(matchedPlayerID).to.be.within(1, 4);
+        expect(playerMatch).to.contain(2);
+        
+        expect(List.isList(playerMatch)).to.be.true;
+        expect(playerMatch.size).to.equal(2);
+
+        expect(playerMatch.get(0)).to.equal(2);
+        expect(playerMatch.get(1)).to.be.within(1, 4);
     });
+
+    it('should return null if there is only one player', () => {
+        const players3 = List.of(
+            new Player(1, 'Drew', 10, true)
+        )
+
+        const playerMatch = DummyMatcher(players3, 1);
+
+        expect(playerMatch).to.equal(null);
+    })
 
 });
