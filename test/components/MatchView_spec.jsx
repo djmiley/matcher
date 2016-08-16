@@ -11,18 +11,24 @@ import MatchView from '../../src/components/MatchView';
 
 describe('MatchView', () => {
 
+
     describe('Rendering', () => {
 
-        it('should display the name of the first player', () => {
-            const matchPlayers = List.of(
+        let matchPlayers;
+        let component;
+
+        before(() => {
+            matchPlayers = List.of(
                 Map({name: 'One'}),
                 Map({name: 'Two'})
             );
 
-            const component = renderIntoDocument(
+            component = renderIntoDocument(
                 <MatchView matchPlayers={matchPlayers} />
             );
+        });
 
+        it('should display the name of the first player', () => {
             const firstPlayerNameLabel = scryRenderedDOMComponentsWithClass(component, 'matcher-match-view-player-one');
 
             expect(firstPlayerNameLabel.length).to.equal(1);
@@ -30,15 +36,6 @@ describe('MatchView', () => {
         });
 
         it('should display the name of the second player', () => {
-            const matchPlayers = List.of(
-                Map({name: 'One'}),
-                Map({name: 'Two'})
-            );
-
-            const component = renderIntoDocument(
-                <MatchView matchPlayers={matchPlayers} />
-            );
-
             const secondPlayerNameLabel = scryRenderedDOMComponentsWithClass(component, 'matcher-match-view-player-two');
 
             expect(secondPlayerNameLabel.length).to.equal(1);
@@ -46,15 +43,6 @@ describe('MatchView', () => {
         });
 
         it('should display a Versus label between the two player names', () => {
-            const matchPlayers = List.of(
-                Map({name: 'One'}),
-                Map({name: 'Two'})
-            );
-
-            const component = renderIntoDocument(
-                <MatchView matchPlayers={matchPlayers} />
-            );
-
             const versusLabel = scryRenderedDOMComponentsWithClass(component, 'matcher-versus-label');
 
             expect(versusLabel.length).to.equal(1);
