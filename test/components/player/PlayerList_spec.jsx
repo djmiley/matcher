@@ -7,9 +7,9 @@ const {renderIntoDocument,
     scryRenderedDOMComponentsWithTag,
     Simulate} = TestUtils;
 
-import PlayerList from '../../src/components/PlayerList';
+import PlayerList from '../../../src/components/player/PlayerList';
 
-import Player from '../../src/logic/Player';
+import Player from '../../../src/object/Player';
 
 describe('PlayerList', () => {
 

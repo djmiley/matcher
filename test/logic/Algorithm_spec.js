@@ -2,7 +2,7 @@ import {assert, expect} from 'chai';
 import {List, Map} from 'immutable';
 
 import {Matcher, PlayerMatcher} from '../../src/logic/Algorithm';
-import Player from '../../src/logic/Player';
+import Player from '../../src/object/Player';
 
 let players;
 

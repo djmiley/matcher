@@ -7,7 +7,7 @@ const {renderIntoDocument,
     scryRenderedDOMComponentsWithTag,
     Simulate} = TestUtils;
 
-import PlayerView from '../../src/components/PlayerView';
+import PlayerView from '../../../src/components/player/PlayerView';
 
 describe('PlayerView', () => {
 

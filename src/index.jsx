@@ -8,8 +8,8 @@ import * as actions from './constants/actions';
 
 import {AppContainer} from './containers/App';
 
-import Match from './logic/Match';
-import Player from './logic/Player';
+import Match from './object/Match';
+import Player from './object/Player';
 
 import reducer from './reducers/matcher';
 

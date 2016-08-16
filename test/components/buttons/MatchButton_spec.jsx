@@ -7,7 +7,7 @@ const {renderIntoDocument,
     scryRenderedDOMComponentsWithTag,
     Simulate} = TestUtils;
 
-import MatchButton from '../../src/components/MatchButton';
+import MatchButton from '../../../src/components/buttons/MatchButton';
 
 describe('MatchButton', () => {
 

@@ -3,8 +3,8 @@ import {List, Map, fromJS} from 'immutable';
 
 import * as actions from '../../src/constants/actions';
 
-import Match from '../../src/logic/Match';
-import Player from '../../src/logic/Player';
+import Match from '../../src/object/Match';
+import Player from '../../src/object/Player';
 
 import reducer from '../../src/reducers/matcher';
 

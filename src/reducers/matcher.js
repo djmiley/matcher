@@ -2,7 +2,7 @@ import {List, Map} from 'immutable';
 
 import * as actions from '../constants/actions';
 
-import Match from '../logic/Match';
+import Match from '../object/Match';
 
 function getNextID(state, accessor, initialValue) {
     let nextId = initialValue === parseInt(initialValue, 10) ? initialValue : 0;

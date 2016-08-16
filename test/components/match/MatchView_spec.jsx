@@ -7,10 +7,9 @@ const {renderIntoDocument,
     scryRenderedDOMComponentsWithClass,
     scryRenderedDOMComponentsWithTag} = TestUtils;
 
-import MatchView from '../../src/components/MatchView';
+import MatchView from '../../../src/components/match/MatchView';
 
 describe('MatchView', () => {
-
 
     describe('Rendering', () => {
 

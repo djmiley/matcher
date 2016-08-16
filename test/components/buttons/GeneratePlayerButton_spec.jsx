@@ -7,7 +7,7 @@ const {renderIntoDocument,
     scryRenderedDOMComponentsWithTag,
     Simulate} = TestUtils;
 
-import GeneratePlayerButton from '../../src/components/GeneratePlayerButton';
+import GeneratePlayerButton from '../../../src/components/buttons/GeneratePlayerButton';
 
 describe('GeneratePlayerButton', () => {
 

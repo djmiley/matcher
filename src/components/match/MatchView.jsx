@@ -1,6 +1,6 @@
 import React from 'react';
 
-import VersusLabel from './VersusLabel';
+import VersusLabel from '../label/VersusLabel';
 
 export default class MatchView extends React.Component {
     constructor(props) {

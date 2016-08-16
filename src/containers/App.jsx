@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 
 import * as actionCreators from '../actions/matcher';
 
-import GeneratePlayerButton from '../components/GeneratePlayerButton';
-import MatchButton from '../components/MatchButton';
-import MatchList from '../components/MatchList';
-import PlayerList from '../components/PlayerList';
+import GeneratePlayerButton from '../components/buttons/GeneratePlayerButton';
+import MatchButton from '../components/buttons/MatchButton';
+import MatchList from '../components/match/MatchList';
+import PlayerList from '../components/player/PlayerList';
 
 export default class App extends React.Component {
     render() {

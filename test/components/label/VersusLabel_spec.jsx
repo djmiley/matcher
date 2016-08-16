@@ -5,7 +5,7 @@ import TestUtils from 'react-addons-test-utils';
 const {renderIntoDocument,
     scryRenderedDOMComponentsWithTag} = TestUtils;
 
-import VersusLabel from '../../src/components/VersusLabel';
+import VersusLabel from '../../../src/components/label/VersusLabel';
 
 describe('VersusLabel', () => {
 
