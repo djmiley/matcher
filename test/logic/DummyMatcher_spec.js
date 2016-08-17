@@ -56,6 +56,7 @@ describe('PlayerDummyMatcher', () => {
         expect(playerMatch.size).to.equal(2);
 
         expect(playerMatch.get(0)).to.equal(2);
+        expect(playerMatch.get(1)).to.not.equal(2);
         expect(playerMatch.get(1)).to.be.within(1, 4);
     });
 

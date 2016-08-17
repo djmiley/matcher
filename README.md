@@ -41,6 +41,7 @@ npm test
     +-- logic
     |   +-- DummyMatcher.js
     |   +-- RandomPlayer.js
+    |   +-- RandomPlayerFeed.js
     +-- object
     |   +-- Match.js
     |   +-- Player.js
@@ -53,10 +54,16 @@ npm test
 
 Currently, there are tests on each of the files within the components, logic, and reducers folders. The relevant file can be found in the analogous point within the `test` folder. All test files are suffixed with `_spec`
 
-## Custom matcher
+## Custom implementation
+
+Each player requires an identifying accessor, a display accessor, and a value accessor. The string accessor for each of these are specified in this file, and the custom implementation should conform to this. They are set to 'id', 'name', and 'rating' respectively. Defaulted implementations are held in the logic folder.
+
+### Matcher
 
 In config.js, you can specify a custom matcher to match players up, rather than the default DummyMatcher. This method should take in a list of players as a first parameter, and an id as an optional second parameter.
 
 It should return an immutable list containing pair-wise immutable lists of ids. i.e; List(List(1, 2), List(3, 4))
 
-Each player requires an identifying accessor, a display accessor, and a value accessor. The string accessor for each of these are specified in this file, and the algorithm should conform to this. They are set to 'id', 'name', and 'rating' respectively.
+### Player Feed
+
+In config.js, you can specify a player feed to provide the app with new players. This function should take in the action for adding players, currently `this.props.addPlayer`, and should only need to be invoked once to provide the feed. A simple random implementation is currently provided.

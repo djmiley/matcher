@@ -1,9 +1,6 @@
 import * as actions from '../constants/actions';
 
-import DummyMatcher from '../logic/DummyMatcher';
-import RandomPlayer from '../logic/RandomPlayer';
-
-let matcher = DummyMatcher;
+let matcher = null;
 
 export function matcher(setMatcher) {
     if (!setMatcher) {
@@ -12,8 +9,7 @@ export function matcher(setMatcher) {
     matcher = setMatcher;
 }
 
-export function addPlayer() {
-    const player = new RandomPlayer();
+export function addPlayer(player) {
     return {
         type: actions.ADD_PLAYER,
         player
@@ -21,7 +17,7 @@ export function addPlayer() {
 }
 
 export function match(players, playerID) {
-    const matchedPlayers = matcher(players, playerID);
+    const matchedPlayers = matcher ? matcher(players, playerID) : null;
     return {
         type: actions.MATCH,
         matchedPlayers
