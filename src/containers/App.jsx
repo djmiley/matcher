@@ -13,7 +13,7 @@ export default class App extends React.Component {
     componentDidMount() {
         if (config.playerFeed) {
             config.playerFeed(this.props.addPlayer);
-        };
+        }
     }
     render() {
         return <div>

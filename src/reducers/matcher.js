@@ -15,10 +15,17 @@ function getNextID(state, accessor, initialValue) {
 }
 
 function setState(state, newState) {
+    if (!newState) {
+        return state;
+    }
     return state.mergeDeep(newState);
 }
 
 function addPlayer(state, player) {
+    if (!player) {
+        return state;
+    }
+
     const nextId = getNextID(state, 'players');
     let newPlayer = player;
     newPlayer.id = nextId;

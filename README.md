@@ -58,6 +58,9 @@ Currently, there are tests on each of the files within the components, logic, an
 
 Each player requires an identifying accessor, a display accessor, and a value accessor. The string accessor for each of these are specified in this file, and the custom implementation should conform to this. They are set to 'id', 'name', and 'rating' respectively. Defaulted implementations are held in the logic folder.
 
+### Initial state
+In config.js, you can specify an initial state of players and matches for the application to load up. This can be either plain js, or immutable objects.
+
 ### Matcher
 
 In config.js, you can specify a custom matcher to match players up, rather than the default DummyMatcher. This method should take in a list of players as a first parameter, and an id as an optional second parameter.
