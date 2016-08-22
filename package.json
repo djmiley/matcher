@@ -1,7 +1,7 @@
 {
-  "name": "reduc-todomvc",
+  "name": "matcher",
   "version": "1.0.0",
-  "description": "",
+  "description": "A react-redux dummy implementation to envelope a rating matcher",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
